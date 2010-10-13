@@ -1,0 +1,9 @@
+
+    >>> from fise.client import FISE
+    >>> fise = FISE('http://localhost:8080/')
+    
+    >>> fise.engines('foo bar baz')
+    u'<rdf:RDF.../rdf:RDF>'
+    
+    >> interact(locals())
+      

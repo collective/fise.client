@@ -5,7 +5,7 @@ Engine). FISE offers a RESTful API to communicate with.
 A good `introduction an overview of FISE features <http://blogs.nuxeo.com/dev/2010/08/introducing-fise-the-restful-semantic-engine.html>`_ 
 has been written by Olivier Grisel. 
 
-There are three kinds of communication:
+FISE offers are basically three methods of interaction:
 
 engines
     stateless interface, submit content to the fise engines and get the 
@@ -21,7 +21,30 @@ sparql
 Python API
 ==========
 
-TODO
+Initialize::
 
+    >>> from fise.client.api import FISE
+    >>> fise = FISE('http://localhost:8080/')
 
+Use the engines::    
+    
+    >>> somedoc = "This is an example text."
+    >>> fise.engines(somedoc)
+    <xml...>
+    
+    >>> fise.engines(somedoc, format='rdfjson')
+    jsonresponse
 
+Use the store::
+    
+    >>> id = 'test123'
+    >>> fise.store.put(somedoc, id)
+    >>> fise.store.get(id)
+    <somexml>
+    
+    >>> fise.store.fetch(id)
+    "This is an example text."
+
+Use the SPARQL::
+    
+- TODO

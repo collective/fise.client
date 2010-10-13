@@ -27,7 +27,10 @@ setup(name='fise.client',
       namespace_packages=[],
       include_package_data=True,
       zip_safe=True,
-      install_requires=['setuptools'],
+      install_requires=[
+            'setuptools',
+            'py-restclient'
+      ],
       tests_require=tests_require,
       test_suite="fise.client.tests.test_suite",
       extras_require = dict(

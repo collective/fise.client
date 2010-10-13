@@ -1,5 +1,3 @@
-# Python Software Foundation License
-
 import unittest
 import doctest 
 from pprint import pprint
@@ -10,7 +8,7 @@ optionflags = doctest.NORMALIZE_WHITESPACE | \
               doctest.REPORT_ONLY_FIRST_FAILURE
 
 TESTFILES = [
-    '.txt',
+    'engines.txt'
 ]
 
 def test_suite():
@@ -23,5 +21,5 @@ def test_suite():
         ) for file in TESTFILES
     ])
 
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite') 
+if __name__ == '__main__':                  #pragma NO COVERAGE
+    unittest.main(defaultTest='test_suite') #pragma NO COVERAGE
