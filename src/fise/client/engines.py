@@ -13,7 +13,7 @@ class Engines(FISECommunicator):
     
     def __call__(self, payload, format='rdfxml'):
         if format not in RDFFORMATS:
-            raise ValueError, 'Format %s is not allowed.' % format
+            raise ValueError, 'Format "%s" is not possible.' % format
         headers = {
             'Accept': RDFFORMATS[format],
             'Content-Type': 'text/plain',

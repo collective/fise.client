@@ -1,9 +1,26 @@
+To run this test it needs a running FISE server at localhost port 8080.
 
-    >>> from fise.client import FISE
-    >>> fise = FISE('http://localhost:8080/')
+First import the class::
     
-    >>> fise.engines('foo bar baz')
-    u'<rdf:RDF.../rdf:RDF>'
+    >>> from fise.client.engines import Engines
     
-    >> interact(locals())
-      
+Instantiate it::    
+    
+    >>> engines = Engines('http://localhost:8080/')
+
+Now lets get the engines default outcome:: 
+    
+    >>> engines('foo bar baz')
+    u'<rdf:RDF...</rdf:RDF>\n'
+
+The same in JSON::
+    
+    >>> engines('foo bar baz', format='rdfjson')
+    u'{"...}'
+
+But you can not pass anything:
+
+    >>> engines('foo bar baz', format='impossible')
+    Traceback (most recent call last):
+    ...
+    ValueError: Format "impossible" is not possible.

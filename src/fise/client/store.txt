@@ -1,0 +1,17 @@
+    
+    >>> from fise.client.store import Store
+    
+    >>> store = Store("http://localhost:8080")
+    
+    >>> store['123'] = u'Foo bar baz'
+    
+    >>> store['123']
+    u'Foo bar baz'
+
+    >>> store.metadata('123')
+    <RDF>
+    
+    >>> store.page('123')
+    <HTML>
+    
+        

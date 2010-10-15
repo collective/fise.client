@@ -23,27 +23,37 @@ Python API
 
 Initialize::
 
-    >>> from fise.client.api import FISE
+    >>> from fise.client import FISE
     >>> fise = FISE('http://localhost:8080/')
 
 Use the engines::    
     
-    >>> somedoc = "This is an example text."
+    >>> somedoc = u"This is an example text."
     >>> fise.engines(somedoc)
     <xml...>
     
     >>> fise.engines(somedoc, format='rdfjson')
     jsonresponse
 
-Use the store::
+Use the store, first store content (only plain text is accepted for now)::
     
     >>> id = 'test123'
-    >>> fise.store.put(somedoc, id)
-    >>> fise.store.get(id)
-    <somexml>
+    >>> fise.store.content[id] = payload
+
+Next get the text back::    
     
-    >>> fise.store.fetch(id)
-    "This is an example text."
+    >>> fise.store.content[id]
+    u"This is an example text."
+
+Then get the metadata::
+    
+    >>> fise.store.metadata(id)
+    <RDF>
+    
+And FISE special feature: Get an HTML page about the content::    
+
+    >>> fise.store.page(id)
+    <HTML>
 
 Use the SPARQL::
     
