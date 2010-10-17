@@ -1,11 +1,7 @@
-from fise.client.base import FISECommunicator
-
-RDFFORMATS = {
-    'rdfxml'     : 'application/rdf+xml',
-    'rdfjson'    : 'application/rdf+json',
-    'rdfntriples': 'text/rdf+nt',
-    'turtle'     : 'text/turtle',
-}
+from fise.client.base import (
+    FISECommunicator,
+    RDFFORMATS,
+)
 
 class Engines(FISECommunicator):
     
@@ -19,4 +15,4 @@ class Engines(FISECommunicator):
             'Content-Type': 'text/plain',
         }        
         result = self._resource.post(payload=payload, headers=headers)
-        return result        
+        return result.body_string()

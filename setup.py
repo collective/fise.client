@@ -29,7 +29,7 @@ setup(name='fise.client',
       zip_safe=True,
       install_requires=[
             'setuptools',
-            'py-restclient'
+            'restkit'
       ],
       tests_require=tests_require,
       test_suite="fise.client.tests.test_suite",

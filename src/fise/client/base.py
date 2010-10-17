@@ -1,12 +1,19 @@
 import os
-import restclient
+import restkit
+
+RDFFORMATS = {
+    'rdfxml'     : 'application/rdf+xml',
+    'rdfjson'    : 'application/rdf+json',
+    'rdfntriples': 'text/rdf+nt',
+    'turtle'     : 'text/turtle',
+}
 
 class FISECommunicator(object):
     
-    def __init__(self, baseuri, transport=None):
+    def __init__(self, baseuri, pool=None):
         self._baseuri = baseuri
         self._instance = None
-        self.transport = transport
+        self.pool = pool or restkit.SimplePool(keepalive=2)
         
     @property
     def _uri(self):
@@ -14,7 +21,4 @@ class FISECommunicator(object):
         
     @property
     def _resource(self):        
-        if self._instance is None:  
-            self._instance = restclient.Resource(self._uri, 
-                                                 transport=self.transport)
-        return self._instance
+        return restkit.Resource(self._uri, pool_instance=self.pool)

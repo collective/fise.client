@@ -3,15 +3,17 @@
     
     >>> store = Store("http://localhost:8080")
     
-    >>> store['123'] = u'Foo bar baz'
+    >> interact(locals())
     
-    >>> store['123']
-    u'Foo bar baz'
+    >>> store['1234'] = u'Foo bar baz'
+    
+    >>> store['1234']
+    'Foo bar baz'
 
-    >>> store.metadata('123')
+    >>> store.metadata('1234')
     <RDF>
     
-    >>> store.page('123')
+    >>> store.page('1234')
     <HTML>
     
-        
+    
