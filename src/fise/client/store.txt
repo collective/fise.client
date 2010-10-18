@@ -1,19 +1,24 @@
     
+    >>> import uuid
     >>> from fise.client.store import Store
-    
     >>> store = Store("http://localhost:8080")
     
-    >> interact(locals())
+    >>> generated_id = store.add('Paris London Salzburg Innsbruck %s' % uuid.uuid4().hex)
     
-    >>> store['1234'] = u'Foo bar baz'
+    >>> id = 'uuid-%s' % uuid.uuid4().hex
     
-    >>> store['1234']
+    >>> store[id] = u'Foo bar baz'
+    
+    >>> store[id]
     'Foo bar baz'
 
-    >>> store.metadata('1234')
-    <RDF>
+    >>> store.metadata(id)
+    '<rdf:RDF...</rdf:RDF>\n'
     
-    >>> store.page('1234')
+    >>> store.metadata(id, format='rdfntriples')
+    '<urn:enhancement-...>...
+    
+    >>> store.page(id)
     <HTML>
     
     

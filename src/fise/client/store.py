@@ -20,7 +20,7 @@ class Store(FISECommunicator):
         return response.body_string()
         
     def __setitem__(self, id, payload):
-        """Adds content to store using given id.
+        """Adds or updates content to store using given id.
         """ 
         headers = {
             'Content-Type': 'text/plain',
@@ -34,22 +34,24 @@ class Store(FISECommunicator):
         headers = {
             'Content-Type': 'text/plain',
         }        
-        response = self._resource.post(path=path, payload=payload, 
-                                       headers=headers)
-        path = urlparse.urlparse(response.headers['Location']).path
+        response = self._resource.post(payload=payload, headers=headers)
+        path = urlparse.urlparse(response.headers['location']).path
         path = path.split('/')
         if len(path) < 3:
             raise ValueError, 'Location path to short.'
         return path[-1]        
     
-    def metadata(self, id):
+    def metadata(self, id, format='rdfxml'):
         """Get extracted rdf+xml metadata of content with given id.
         """
+        if format not in RDFFORMATS:
+            raise ValueError, 'Format "%s" is not possible.' % format
         headers = {
-            'Accept': RDFFORMATS['rdfxml'],
+            'Accept': RDFFORMATS[format],
         }        
-        path = "rmetadata/%s" % id
-        return self._resource.get(path=path, headers=headers)
+        path = "metadata/%s" % id
+        response = self._resource.get(path=path, headers=headers)
+        return response.body_string()
     
     def page(self, id):
         """HTML summary view of the extracted RDF metadata.
