@@ -1,24 +1,51 @@
-    
+To run this test it needs a running FISE server at localhost port 8080.
+
+Imports first::
+
     >>> import uuid
     >>> from fise.client.store import Store
+    
+Instatiate a store::    
+    
     >>> store = Store("http://localhost:8080")
     
-    >>> generated_id = store.add('Paris London Salzburg Innsbruck %s' % uuid.uuid4().hex)
+Lets FISE create an ID for the text. We need a Random part because of FISE bug
+#83  http://code.google.com/p/iks-project/issues/detail?id=83
+::
     
-    >>> id = 'uuid-%s' % uuid.uuid4().hex
+    >>> content = 'Paris London Salzburg Innsbruck %s' % uuid.uuid4().hex
+    >>> generated_id = store.add(content)
+    >>> generated_id.startswith('sha1-')
+    True
+  
+Fetch back content::
+   
+    >>> store[generated_id] == content
+    True
     
-    >>> store[id] = u'Foo bar baz'
+Controlling the id works too, random here too because of bug #83::
     
+    >>> id = 'uuid-%s' % uuid.uuid4().hex    
+    >>> store[id] = u'Foo bar baz'    
     >>> store[id]
     'Foo bar baz'
+
+We can get metadata extracted by FISE engines::
 
     >>> store.metadata(id)
     '<rdf:RDF...</rdf:RDF>\n'
     
+Or request it in different formats::
+    
     >>> store.metadata(id, format='rdfntriples')
     '<urn:enhancement-...>...
     
+Theres a generated HTML-Page with all information, get URL::
+
     >>> store.page(id)
-    <HTML>
+    'http://'
     
-    
+Or get the whole HTML::
+
+    >>> store.page(id, full=True)
+    '<html>...</html>'
