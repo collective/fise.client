@@ -29,7 +29,8 @@ setup(name='fise.client',
       zip_safe=True,
       install_requires=[
             'setuptools',
-            'restkit'
+            'restkit',
+            'rdflib',
       ],
       tests_require=tests_require,
       test_suite="fise.client.tests.test_suite",

@@ -4,8 +4,8 @@ from pprint import pprint
 from interlude import interact
 
 optionflags = doctest.NORMALIZE_WHITESPACE | \
-              doctest.ELLIPSIS | \
-              doctest.REPORT_ONLY_FIRST_FAILURE
+              doctest.ELLIPSIS #| \
+#              doctest.REPORT_ONLY_FIRST_FAILURE
 
 TESTFILES = [
     'engines.txt',

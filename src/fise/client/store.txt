@@ -23,29 +23,33 @@ Fetch back content::
     >>> store[generated_id] == content
     True
     
-Controlling the id works too, random here too because of bug #83::
-    
-    >>> id = 'uuid-%s' % uuid.uuid4().hex    
-    >>> store[id] = u'Foo bar baz'    
-    >>> store[id]
-    'Foo bar baz'
-
 We can get metadata extracted by FISE engines::
 
-    >>> store.metadata(id)
+    >>> store.metadata(generated_id)
     '<rdf:RDF...</rdf:RDF>\n'
     
 Or request it in different formats::
     
-    >>> store.metadata(id, format='rdfntriples')
-    '<urn:enhancement-...>...
-    
-Theres a generated HTML-Page with all information, get URL::
+    >>> store.metadata(generated_id, format='turtle')
+    '...<http://www.semanticdesktop.org/ontologies/2007/01/19/nie#plainTextContent>...Paris London Salzburg Innsbruck...'
 
-    >>> store.page(id)
-    'http://'
-    
-Or get the whole HTML::
+Test if check works::
 
-    >>> store.page(id, full=True)
-    '<html>...</html>'
+    >>> result = store.metadata(generated_id, format='notvalid')   
+    Traceback (most recent call last):
+    ...
+    ValueError: Format "notvalid" is not possible.    
+    
+Theres a generated HTML-Page with all information::
+
+    >>> store.page(generated_id).strip()
+    '<html>...Paris London Salzburg Innsbruck...</html>'
+
+Controlling the id works too, random here too because of bug #83::
+    
+    >>> own_id = 'uuid-%s' % uuid.uuid4().hex    
+    >>> store[own_id] = u'Foo bar baz'    
+    >>> store[own_id]
+    'Foo bar baz'
+
+    

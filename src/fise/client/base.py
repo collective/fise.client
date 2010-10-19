@@ -22,3 +22,7 @@ class FISECommunicator(object):
     @property
     def _resource(self):        
         return restkit.Resource(self._uri, pool_instance=self.pool)
+    
+    def _check_format(self, format):
+        if format not in RDFFORMATS:
+            raise ValueError, 'Format "%s" is not possible.' % format

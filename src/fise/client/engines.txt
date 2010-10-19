@@ -24,3 +24,16 @@ But you can not pass anything:
     Traceback (most recent call last):
     ...
     ValueError: Format "impossible" is not possible.
+
+Its possible to directly get an python rdflib Graph
+    
+    >>> engines('foo bar baz', parsed=True)
+    <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
+    
+But never pass format and parsed together::
+
+    >>> engines('foo bar baz', format='rdfturtle', parsed=True)
+    Traceback (most recent call last):
+    ...
+    ValueError: If you want it parsed do not touch the format!
+    
