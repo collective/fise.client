@@ -39,16 +39,16 @@ class Store(FISECommunicator):
         path = path.split('/')
         return path[-1]        
     
-    def metadata(self, id, format='rdfxml'):
+    def metadata(self, id, format='rdfxml', parsed=False):
         """Get extracted rdf+xml metadata of content with given id.
         """
-        self._check_format(format)
+        self._check_format(format, parsed)
         headers = {
             'Accept': RDFFORMATS[format],
         }        
         path = "metadata/%s" % id
         response = self._resource.get(path=path, headers=headers)
-        return response.body_string()
+        return self._make_result(response, format, parsed)
     
     def page(self, id):
         """URL to HTML summary view of the extracted RDF metadata.

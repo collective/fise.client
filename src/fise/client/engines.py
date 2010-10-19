@@ -1,4 +1,3 @@
-import rdflib
 from fise.client.base import (
     FISECommunicator,
     RDFFORMATS,
@@ -20,16 +19,10 @@ class Engines(FISECommunicator):
         :param parsed: get the result as python 'rdflib.Graph' instance. 
         :rtype: String or rdflib.Graph instance   
         """ 
-        if parsed and format != "rdfxml":
-            raise ValueError, "If you want it parsed do not touch the format!"
-        self._check_format(format)
+        self._check_format(format, parsed)
         headers = {
             'Accept': RDFFORMATS[format],
             'Content-Type': 'text/plain',
         }        
-        result = self._resource.post(payload=payload, headers=headers)
-        if not parsed:
-            return result.body_string()
-        graph = rdflib.Graph()
-        graph.parse(source=result.body_stream(), format=RDFFORMATS[format])
-        return graph
+        response = self._resource.post(payload=payload, headers=headers)
+        return self._make_result(response, format, parsed)

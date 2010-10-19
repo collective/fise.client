@@ -1,5 +1,6 @@
 import os
 import restkit
+import rdflib
 
 RDFFORMATS = {
     'rdfxml'     : 'application/rdf+xml',
@@ -23,6 +24,15 @@ class FISECommunicator(object):
     def _resource(self):        
         return restkit.Resource(self._uri, pool_instance=self.pool)
     
-    def _check_format(self, format):
+    def _check_format(self, format, parsed):
+        if parsed and format != "rdfxml":
+            raise ValueError, "If you want it parsed do not touch the format!"        
         if format not in RDFFORMATS:
             raise ValueError, 'Format "%s" is not possible.' % format
+        
+    def _make_result(self, response, format, parsed):
+        if not parsed:
+            return response.body_string()
+        graph = rdflib.Graph()
+        graph.parse(source=response.body_stream(), format=RDFFORMATS[format])
+        return graph        
