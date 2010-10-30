@@ -24,10 +24,18 @@ Lets fetch non-existing content::
     ...
     KeyError: 'non-existing'
     
+    >>> print store.get('non-existing')
+    None  
+
+    >>> store.get('non-existing', 'default')
+    'default'  
   
 Fetch back content::
    
     >>> store[generated_id] == content
+    True
+    
+    >>> store.get(generated_id) == content
     True
     
 We can get metadata extracted by FISE engines::

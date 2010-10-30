@@ -25,7 +25,13 @@ class Store(FISECommunicator):
         self._check_response(response, KeyError, 
                              'Cant get content with id %s from fise' % id)
         return response.body_string()
-        
+    
+    def get(self, cid, default=None):
+        try:
+            return self[cid]
+        except KeyError:
+            return default
+                
     def __setitem__(self, cid, payload):
         """Adds or updates content to store using given id.
         """ 
