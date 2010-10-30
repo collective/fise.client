@@ -16,7 +16,8 @@ store
     Upload content to the store and in a second step get the enhancements back.
     
 sparql
-    access FISE as a SPARQL endpoint (W3C conform)
+    access FISE as a SPARQL endpoint (W3C conform).
+    
     
 Python API
 ==========
@@ -55,6 +56,6 @@ And FISE special feature: Get an HTML page about the content::
     >>> fise.store.page(id)
     <HTML>
 
-Use the SPARQL::
+
+
     
-- TODO
