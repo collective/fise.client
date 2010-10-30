@@ -28,7 +28,7 @@ But you can not pass anything:
 Its possible to directly get an python rdflib Graph
     
     >>> engines('foo bar baz', parsed=True)
-    <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
+    <Graph identifier=... (<class 'rdflib.Graph.BackwardCompatGraph'>)>
     
 But never pass format and parsed together::
 

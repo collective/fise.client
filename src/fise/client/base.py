@@ -30,9 +30,14 @@ class FISECommunicator(object):
         if format not in RDFFORMATS:
             raise ValueError, 'Format "%s" is not possible.' % format
         
+    def _check_response(self, response, exception_class, errormsg, code=200):
+        if response.status_int != code:
+            raise exception_class, '%s Status %i' % (errormsg, 
+                                                     response.status_int)
+        
     def _make_result(self, response, format, parsed):
         if not parsed:
             return response.body_string()
         graph = rdflib.Graph()
-        graph.parse(source=response.body_stream(), format=RDFFORMATS[format])
+        graph.parse(source=response.body_stream(), format='xml')
         return graph        

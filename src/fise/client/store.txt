@@ -9,14 +9,17 @@ Instatiate a store::
     
     >>> store = Store("http://localhost:8080")
     
-Lets FISE create an ID for the text. We need a Random part because of FISE bug
-#83  http://code.google.com/p/iks-project/issues/detail?id=83
+Lets FISE create an ID for the text.
 ::
     
     >>> content = 'Paris London Salzburg Innsbruck %s' % uuid.uuid4().hex
     >>> generated_id = store.add(content)
     >>> generated_id.startswith('sha1-')
     True
+    
+Lets fetch non-existing content::
+
+    >>> store['non-existing']
   
 Fetch back content::
    
@@ -45,11 +48,15 @@ Theres a generated HTML-Page with all information::
     >>> store.page(generated_id).strip()
     '<html>...Paris London Salzburg Innsbruck...</html>'
 
-Controlling the id works too, random here too because of bug #83::
+Controlling the id works too::
     
     >>> own_id = 'uuid-%s' % uuid.uuid4().hex    
     >>> store[own_id] = u'Foo bar baz'    
     >>> store[own_id]
     'Foo bar baz'
 
-    
+Change the text::
+
+    >>> store[own_id] = u'Paris Berlin Vienna'
+    >>> store[own_id]
+    'Paris Berlin Vienna'
