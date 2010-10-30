@@ -20,6 +20,10 @@ Lets FISE create an ID for the text.
 Lets fetch non-existing content::
 
     >>> store['non-existing']
+    Traceback (most recent call last):
+    ...
+    KeyError: 'non-existing'
+    
   
 Fetch back content::
    

@@ -1,7 +1,6 @@
 import os
 import urlparse
 from restkit.errors import (
-    ResourceError, 
     ResourceNotFound
 )
 from fise.client.base import (
