@@ -30,7 +30,10 @@ setup(name='fise.client',
       install_requires=[
             'setuptools',
             'restkit',
+            'rdflib==2.4.2',
             'surf.sparql_protocol',
+            'surf.rdflib',
+
       ],
       tests_require=tests_require,
       test_suite="fise.client.tests.test_suite",
