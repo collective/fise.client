@@ -9,7 +9,7 @@ Instatiate a store::
     
     >>> store = Store("http://localhost:8080")
     
-    >>> interact(locals())
+    >> interact(locals())
     
 Lets FISE create an ID for the text.
 ::
