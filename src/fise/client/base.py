@@ -14,7 +14,7 @@ class FISECommunicator(object):
     def __init__(self, baseuri, pool=None):
         self._baseuri = baseuri
         self._instance = None
-        self.pool = pool or restkit.SimplePool(keepalive=2)
+        self.pool = pool or restkit.get_default_manager()
         
     @property
     def _uri(self):
