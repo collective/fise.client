@@ -1,25 +1,21 @@
+from restkit import get_default_manager
 try:
     import eventlet
 except ImportError:
-    HAS_EVENTLET = False
-    from restkit import SimplePool 
+    pass
 else:
-    HAS_EVENTLET = True
-    eventlet.monkey_patch(all=False, socket=True, select=True)
-    from restkit.pool.reventlet import EventletPool
+    from restkit import set_default_manager
+    # XXX use EventletConnectionManager
 
 from fise.client.engines import Engines 
 from fise.client.store import Store 
-#from fise.client.sparql import SPARQL 
+#from fise.client.sparql import SPARQL
 
 class FISE(object):
     
     def __init__(self, baseuri):
         self.baseuri = baseuri
-        if HAS_EVENTLET:
-            pool = EventletPool(keepalive=2, timeout=300)
-        else:
-            pool = SimplePool(keepalive=2)
+        self.pool = get_default_manager()
         
     @property
     def engines(self):
@@ -32,3 +28,4 @@ class FISE(object):
 #    @property
 #    def sparql(self):
 #        return SPARQL(self.baseuri, pool=self.pool)
+# use surf.sparql here? 
