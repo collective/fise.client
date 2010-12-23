@@ -1,0 +1,2 @@
+#!/bin/sh
+java -jar ${fise-download:location}/eu.iksproject.fise.launchers.lite.jar -p 8080

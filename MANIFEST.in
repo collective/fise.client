@@ -1,3 +1,6 @@
 include *.rst
+include bootstrap.py
+include buildout.cfg
+include fise-instance.in
 recursive-include src *
 recursive-exclude src *.pyc *.pyo
