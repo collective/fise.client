@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import sys, os
 
 version = '1.0'
-shortdesc = 'FISE Semantic Engine: RESTful Python Client.'
+shortdesc = 'Apache Stanbol FISE: RESTful Python Client.'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 tests_require = ['interlude']
 
@@ -12,16 +12,16 @@ setup(name='fise.client',
       long_description=longdesc,
       classifiers=[
             'Development Status :: 5 - Production/Stable',
-            'License :: OSI Approved :: BSD License',
+            'License :: OSI Approved :: Python Software Foundation License',
             'Operating System :: OS Independent',
             'Programming Language :: Python', 
             'Topic :: Software Development',       
       ],
       keywords='',
-      author='Jens Klein    ',
+      author='Jens Klein',
       author_email='jens@bluedynamics.com',
       url=u'',
-      license='Simplifed BSD like',
+      license='Python Software Foundation License',
       packages=find_packages('src'),
       package_dir = {'': 'src'},
       namespace_packages=[],
