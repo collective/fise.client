@@ -18,6 +18,9 @@ store
 sparql
     access FISE as a SPARQL endpoint (W3C conform).
     
+This API covers ``engines`` and ``store``. Sparql queries are best done by using 
+existing library ``SuRF <http://packages.python.org/SuRF/>``_ which is installed 
+as a dependecy with this package.      
     
 Python API
 ==========
