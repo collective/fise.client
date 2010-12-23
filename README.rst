@@ -95,7 +95,8 @@ Start the FISE semantic engine.
 Now connect with a webbrower to 
 `http://localhost:8080/ <http://localhost:8080/>`_, the FISE web-frontend.
 
-Running the tests shows if everything working as expected::
+Running the tests shows if everything working as expected (needs a running 
+``fise-instance``)::
 
     $ ./bin/tests
     
