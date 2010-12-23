@@ -1,6 +1,6 @@
 This is the `Python <http://www.python.org/>`_ client for Semantic 
 Engine `Apache Stanbol FISE <http://incubator.apache.org/stanbol/>`_ (see also
-the old `IKS-WIKI at <http://wiki.iks-project.eu/index.php/FISE>`_). 
+the old `IKS-WIKI <http://wiki.iks-project.eu/index.php/FISE>`_). 
 Edutainment:  Watch the `Video by Olivier Grisel <http://blogs.nuxeo.com/dev/2010/08/introducing-fise-the-restful-semantic-engine.html>`_
  
 FISE offers a RESTful API with basically three methods of interaction:
@@ -17,7 +17,7 @@ sparql
     access FISE as a SPARQL endpoint (W3C conform).
     
 This API covers ``engines`` and ``store``. Sparql queries are best done by using 
-existing library ``SuRF <http://packages.python.org/SuRF/>``_ which is installed 
+existing library `SuRF <http://packages.python.org/SuRF/>`_ which is installed 
 as a dependecy with this package.      
     
 Python API
@@ -145,8 +145,8 @@ is).
 
 Contributors:
 
-- Jens Klein <jens@bluedynamics.com>, Klein & Partner KG: initial code, tests 
-  and documentation
-
 - funded by `IKS-Project early adopters program 
-  <http://wiki.iks-project.eu/index.php/About>`_  
+  <http://wiki.iks-project.eu/index.php/About>`_
+  
+- Jens Klein <jens@bluedynamics.com>, Klein & Partner KG: initial code, tests, 
+  documentation and first release.
