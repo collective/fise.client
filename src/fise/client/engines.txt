@@ -10,12 +10,12 @@ Instantiate it::
 
 Now lets get the engines default outcome:: 
     
-    >>> engines('foo bar baz')
+    >>> engines('London')
     '<rdf:RDF...</rdf:RDF>\n'
 
 The same in JSON::
     
-    >>> engines('foo bar baz', format='rdfjson')
+    >>> engines('Paris', format='rdfjson')
     '{"...}'
 
 But you can not pass anything:
@@ -27,12 +27,12 @@ But you can not pass anything:
 
 Its possible to directly get an python rdflib Graph
     
-    >>> engines('foo bar baz', parsed=True)
+    >>> engines('Paris', parsed=True)
     <Graph identifier=... (<class 'rdflib.Graph.BackwardCompatGraph'>)>
     
 But never pass format and parsed together::
 
-    >>> engines('foo bar baz', format='rdfturtle', parsed=True)
+    >>> engines('Paris', format='rdfturtle', parsed=True)
     Traceback (most recent call last):
     ...
     ValueError: If you want it parsed do not touch the format!

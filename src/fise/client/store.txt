@@ -14,7 +14,7 @@ Instatiate a store::
 Lets FISE create an ID for the text.
 ::
     
-    >>> content = 'Paris London Salzburg Innsbruck %s' % uuid.uuid4().hex
+    >>> content = 'Paris London %s' % uuid.uuid4().hex
     >>> generated_id = store.add(content)
     >>> generated_id.startswith('sha1-')
     True
@@ -48,7 +48,7 @@ We can get metadata extracted by FISE engines::
 Or request it in different formats::
     
     >>> store.metadata(generated_id, format='turtle')
-    '...<http://www.semanticdesktop.org/ontologies/2007/01/19/nie#plainTextContent>...Paris London Salzburg Innsbruck...'
+    '...<http://fise.iks-project.eu/ontology/selection-context>..."Paris London...' 
 
 Test if check works::
 
@@ -60,7 +60,7 @@ Test if check works::
 Theres a generated HTML-Page with all information::
 
     >>> store.page(generated_id).strip()
-    '<html>...Paris London Salzburg Innsbruck...</html>'
+    '<html>...Paris London...</html>'
 
 Controlling the id works too::
     
