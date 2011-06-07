@@ -14,7 +14,6 @@ class FISECommunicator(object):
     def __init__(self, baseuri, pool=None):
         self._baseuri = baseuri
         self._instance = None
-        self.pool = pool or restkit.get_default_manager()
         
     @property
     def _uri(self):
@@ -22,7 +21,7 @@ class FISECommunicator(object):
         
     @property
     def _resource(self):        
-        return restkit.Resource(self._uri, pool_instance=self.pool)
+        return restkit.Resource(self._uri)
     
     def _check_format(self, format, parsed):
         if parsed and format != "rdfxml":

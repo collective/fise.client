@@ -53,8 +53,8 @@ class Store(FISECommunicator):
         }        
         response = self._resource.post(payload=payload, headers=headers)
         self._check_response(response, ValueError, 
-                             'Cant put content to fise', code=201)
-        path = urlparse.urlparse(response.headers['location']).path
+                             'Can not put content to fise', code=201)
+        path = urlparse.urlparse(response.headers['Location']).path
         path = path.split('/')
         return path[-1]        
     

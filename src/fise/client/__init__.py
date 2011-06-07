@@ -1,31 +1,25 @@
-from restkit import get_default_manager
+from restkit.globals import set_manager, get_manager
 try:
     import eventlet
+    eventlet.monkey_patch()
+    from restkit.manager.meventlet import EventletManager
+    set_manager(EventletManager(timeout=60))
 except ImportError:
-    pass
-else:
-    from restkit import set_default_manager
-    # XXX use EventletConnectionManager
+    from restkit import Manager
+    set_manager(Manager(max_conn=10))
 
 from fise.client.engines import Engines 
 from fise.client.store import Store 
-#from fise.client.sparql import SPARQL
 
 class FISE(object):
     
     def __init__(self, baseuri):
         self.baseuri = baseuri
-        self.pool = get_default_manager()
         
     @property
     def engines(self):
-        return Engines(self.baseuri, pool=self.pool)
+        return Engines(self.baseuri)
 
     @property
     def store(self):
-        return Store(self.baseuri, pool=self.pool)
-
-#    @property
-#    def sparql(self):
-#        return SPARQL(self.baseuri, pool=self.pool)
-# use surf.sparql here? 
+        return Store(self.baseuri)
