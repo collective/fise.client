@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.0'
+version = '1.1'
 shortdesc = 'Apache Stanbol FISE: RESTful Python Client.'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 tests_require = ['interlude']
